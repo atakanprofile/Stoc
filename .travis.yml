@@ -18,13 +18,15 @@ script:
 - cp /opt/qt59/lib/libQt5Svg.so.5.9.0 dist/stacer/lib/libQt5Svg.so.5
 - cp /opt/qt59/plugins/imageformats/libqsvg.so dist/stacer/plugins/imageformats
 - "./lqt dist/stacer/stacer -appimage"
+- rm -f lqt
+- mv Stacer-x86_64.AppImage ../Stacer-x_64.AppImage
 after_success:
 - curl --upload-file ./Stacer*.AppImage https://transfer.sh/Stacer-x64.AppImage
 deploy:
   provider: releases
   api_key:
     secure: EWUytpGgO3xOlL7FRtaCIG9MPlSZWEC/v4xkxlr4eAbpfHVfrusfLVyfKlE7YcNf1gxzzCNLW5EiESElgTe0Rw4DkGdfhIwZ3rKB9ag9NKHQAwv/w6TljCmU4elEF1/nQugq1gKenPNLGQjLBFY5TM4HlaXQK2yr8cxyNV0+lH6EqXLACsPk/LZM9ZxK3xBx4nhvNpy4bqLOBR4zw9zFmoiXF/AgdwSG25RGdM1NxVE/u3hp0wRRXqulE+vTkBj6O+lStm5DZQKHlqgqli9LNVbwTDHudm6K8Rbz6+V0KrxrDEh7YZyohCAyhDD6AsdoyTSht3TXbPgTeCgKL8xvGsxtI8BcUsrhLoSHEynKf2AEnV+XnHVUuNXvvKpFySuOKhfaWELhypqR946P7+BMA2/T8iKisw9wnBLfVM8al/1l4usixJRNamuH7b8hSjZWYkTuci+pbQsd+/ZiX5qCCz6g+SRdPeFaYZgL0hMtHB+34OU+kW7HeY/eM6D5TKlHCZ0o3pY5fNBr7GzQfOkkBxH+hrUsz2zzX60UUF0qcZI5QFmcR6eO0QChIoSTW5iy3zQkVVcClKjxsvqvJPLa6MgJoHFUkyN/C1sY7WZ3mWrxGSjpAiJSyPxLITFGGU0x+66tqicTkaEZaqVcmjGiT4v3Sv9NLAAkO2kWb0oFUGo=
-  file: "/home/travis/build/atakanprofile/Stoc/Stacer-x86_64.AppImage"
+  file: "/home/travis/build/atakanprofile/Stoc/Stacer-x_64.AppImage"
   on:
     repo: atakanprofile/Stoc
     branch: native
