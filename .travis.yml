@@ -21,7 +21,7 @@ script:
 - rm -f lqt
 - mv Stacer-x86_64.AppImage ../Stacer-x_64.AppImage
 after_success:
-- curl --upload-file ./Stacer*.AppImage https://transfer.sh/Stacer-x64.AppImage
+- curl --upload-file ../Stacer*.AppImage https://transfer.sh/Stacer-x64.AppImage
 deploy:
   provider: releases
   api_key:
