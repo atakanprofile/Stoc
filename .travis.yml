@@ -14,6 +14,8 @@ script:
 after_success:
 - curl --upload-file ../Stacer*.AppImage https://transfer.sh/Stacer-x64.AppImage
 before_deploy:
+- sudo apt-get -y -qq ruby ruby-dev
+- sudo gem install fpm
 - wget -cO lqt "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
 - chmod +x lqt
 - unset QTDIR; unset QT_PLUGIN_PATH; unset LD_LIBRARY_PATH
