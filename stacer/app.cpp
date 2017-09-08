@@ -2,6 +2,7 @@
 #include "ui_app.h"
 
 #include "Managers/app_manager.h"
+
 App::~App()
 {
     delete ui;
