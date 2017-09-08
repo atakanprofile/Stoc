@@ -16,6 +16,7 @@ install:
 script:
     - chmod +x deploy.sh && ./deploy.sh
     - cp $QTDIR/lib/libQt5Svg.so.5.9.0 dist/stacer/lib/libQt5Svg.so.5
+    - cp $QTDIR/plugins/imageformats/libqsvg.so dist/stacer/plugins/imageformats
     - unset QTDIR; unset QT_PLUGIN_PATH; unset LD_LIBRARY_PATH
     - ./lqt dist/stacer/stacer -bundle-non-qt-libs -no-translations
     - ./lqt dist/stacer/stacer -appimage
