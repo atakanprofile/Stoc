@@ -55,7 +55,7 @@ void messageHandler(QtMsgType type,
 }
 
 
-int main(int argc, char *argv[])
+in main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
