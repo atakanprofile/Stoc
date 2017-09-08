@@ -15,8 +15,8 @@ install:
     
 script:
     - unset QTDIR; unset QT_PLUGIN_PATH; unset LD_LIBRARY_PATH
-    - ./lqt build/stacer/stacer -bundle-non-qt-libs -no-translations
-    - ./lqt build/stacer/stacer -appimage
+    - ./lqt dist/stacer/stacer -bundle-non-qt-libs -no-translations
+    - ./lqt dist/stacer/stacer -appimage
 
 after_success:
     - curl --upload-file ./APPNAME*.AppImage https://transfer.sh/APPNAME-git.$(git rev-parse --short HEAD)-x86_64.AppImage
