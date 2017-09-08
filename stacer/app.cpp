@@ -64,7 +64,7 @@ void App::pageClick(QPushButton *btn, QWidget *w, QString title)
     btn->setChecked(true); // clicked button set active style
     AppManager::ins()->updateStylesheet(); // update style
 
-    ui->pageTitle->setText("34324");
+    ui->pageTitle->setText(title+"---");
     ui->pageStacked->setCurrentWidget(w);
 }
 
