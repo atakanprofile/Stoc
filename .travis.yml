@@ -10,16 +10,13 @@ before_install:
 install:
     - sudo apt-get -y install build-essential libgl1-mesa-dev qt59base qt59imageformats qt59svg qt59charts-no-lgpl qt59tools
     - source /opt/qt*/bin/qt*-env.sh
-
+    - wget -cO lqt "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
+    - chmod +x lqt
+    
 script:
-    - qmake CONFIG+=release PREFIX=/usr
-    - make -j$(nproc)
-    - make INSTALL_ROOT=appdir -j$(nproc) install ; find appdir/
-    - wget -c lqt "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
-    - chmod a+x lqt
     - unset QTDIR; unset QT_PLUGIN_PATH; unset LD_LIBRARY_PATH
-    - ./lqt  -bundle-non-qt-libs -no-translations
-    - ./lqt ./appdir/usr/share/applications/*.desktop -appimage
+    - ./lqt build/stacer/stacer -bundle-non-qt-libs -no-translations
+    - ./lqt build/stacer/stacer -appimage
 
 after_success:
     - curl --upload-file ./APPNAME*.AppImage https://transfer.sh/APPNAME-git.$(git rev-parse --short HEAD)-x86_64.AppImage
