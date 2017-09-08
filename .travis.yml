@@ -2,18 +2,15 @@ language: cpp
 compiler: gcc
 sudo: require
 dist: trusty
-
 before_install:
 - sudo add-apt-repository ppa:beineri/opt-qt59-trusty -y
 - sudo apt-get update -qq
-
 install:
 - sudo apt-get -y -qq install libgl1-mesa-dev qt59base qt59imageformats qt59svg qt59charts-no-lgpl
   qt59tools
 - source /opt/qt*/bin/qt*-env.sh
 - wget -cO lqt "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
 - chmod +x lqt
-
 script:
 - chmod +x deploy.sh && ./deploy.sh
 - unset QTDIR; unset QT_PLUGIN_PATH; unset LD_LIBRARY_PATH
@@ -21,13 +18,14 @@ script:
 - cp /opt/qt59/lib/libQt5Svg.so.5.9.0 dist/stacer/lib/libQt5Svg.so.5
 - cp /opt/qt59/plugins/imageformats/libqsvg.so dist/stacer/plugins/imageformats
 - "./lqt dist/stacer/stacer -appimage"
-
 after_success:
 - curl --upload-file ./Stacer*.AppImage https://transfer.sh/Stacer-x64.AppImage
-
 deploy:
   provider: releases
   api_key:
-    secure: "ZQ9UNJyjhnwokSADek2A3pZ/nBoMyAhazcZFowlxH73e/+39djeep6VZSn88sJR/jVmBNXCcax0gqp19nDIsqmabG1cX0PvZsn5XHfB/rLeUOjWbxSwEKGVJL0YGquuxCDN0WC3F2U1mf0QUruXJegjEQZTEcfuiodZ0hDu7a3QXDSgwPMBqh8SnELJWi0zjEP4RaHRJA2xPqjCjIqbE434syNycQ0O2Ud8cz79CzvLs6OpvQatLXISpQ9/jNUPA28ojMKH0Nq9jTPDNDqjA3MBG+DGCj26JVyFNk+UknfAQYKI4mgBbGCN7QUeNrFql5b5oBdTbJ6hov/z2o3Met/nDfqGsBfB54S9mejg36b0kSZtprirMpM8oH/6ZETR4O5+a5k50rFGGBi4hw6GgR3mxkh07tiG0JXASaZY/THz2UYoBa4o3PiLTgAgtzZvXXT9OK22Vq07gY7dioRyR6poTpyCMxP6WcR2UVF3Eequ5Bt623e7lXH4Zr99+dLbLgpXssMuYzRG8wYeztFm7UX0a1mfvnmV3IVi5BJ056PhUhuhZzWXWq4T/APr2Bg31NY5CyLwhJJjfI07UEMAzayS4BcxueHWroX6po1LyCCgZIF9ZYsFauz7d0yli2YZiTvtY0JhG/MkIFlhFzGqWXa7yNpLoEep6GvylEkExjJA="
+    secure: EWUytpGgO3xOlL7FRtaCIG9MPlSZWEC/v4xkxlr4eAbpfHVfrusfLVyfKlE7YcNf1gxzzCNLW5EiESElgTe0Rw4DkGdfhIwZ3rKB9ag9NKHQAwv/w6TljCmU4elEF1/nQugq1gKenPNLGQjLBFY5TM4HlaXQK2yr8cxyNV0+lH6EqXLACsPk/LZM9ZxK3xBx4nhvNpy4bqLOBR4zw9zFmoiXF/AgdwSG25RGdM1NxVE/u3hp0wRRXqulE+vTkBj6O+lStm5DZQKHlqgqli9LNVbwTDHudm6K8Rbz6+V0KrxrDEh7YZyohCAyhDD6AsdoyTSht3TXbPgTeCgKL8xvGsxtI8BcUsrhLoSHEynKf2AEnV+XnHVUuNXvvKpFySuOKhfaWELhypqR946P7+BMA2/T8iKisw9wnBLfVM8al/1l4usixJRNamuH7b8hSjZWYkTuci+pbQsd+/ZiX5qCCz6g+SRdPeFaYZgL0hMtHB+34OU+kW7HeY/eM6D5TKlHCZ0o3pY5fNBr7GzQfOkkBxH+hrUsz2zzX60UUF0qcZI5QFmcR6eO0QChIoSTW5iy3zQkVVcClKjxsvqvJPLa6MgJoHFUkyN/C1sY7WZ3mWrxGSjpAiJSyPxLITFGGU0x+66tqicTkaEZaqVcmjGiT4v3Sv9NLAAkO2kWb0oFUGo=
   file: "/home/travis/build/atakanprofile/Stoc/Stacer-x86_64.AppImage"
-  skip_cleanup: true
+  on:
+    repo: atakanprofile/Stoc
+    branch: native
+    tags: true
