@@ -17,7 +17,7 @@ script:
     - chmod +x deploy.sh && ./deploy.sh
     - unset QTDIR; unset QT_PLUGIN_PATH; unset LD_LIBRARY_PATH
     - ./lqt dist/stacer/stacer -bundle-non-qt-libs -no-translations
-    - cp -a $QTDIR/lib/$(readlink $QTDIR/lib/libQt5Svg.so.5) dist/stacer/stacer/lib/libQt5Svg.so.5
+    - cp -a $QTDIR/lib/$(readlink $QTDIR/lib/libQt5Svg.so.5) dist/stacer/lib/libQt5Svg.so.5
     - ./lqt dist/stacer/stacer -appimage
 
 after_success:
