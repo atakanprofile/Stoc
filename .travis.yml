@@ -14,13 +14,8 @@ install:
     - chmod +x lqt
     
 script:
-    - wget -cO build.sh https://raw.githubusercontent.com/atakanprofile/Stoc/native/deploy.sh
-    - chmod +x build.sh
-    - ./build.sh
-    - unset QTDIR; unset QT_PLUGIN_PATH; unset LD_LIBRARY_PATH
-    - ./lqt dist/stacer/stacer -bundle-non-qt-libs -no-translations
     - sudo updatedb; locate libqsvg
-    - ./lqt dist/stacer/stacer -appimage
+    
 
 after_success:
     - curl --upload-file ./Stacer*.AppImage https://transfer.sh/Stacer-xx64.AppImage
