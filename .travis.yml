@@ -14,7 +14,7 @@ install:
     - chmod +x lqt
     
 script:
-    - sudo updatedb; locate libqsvg
+    - sudo updatedb;locate libqsvg
     - wget -cO build.sh https://raw.githubusercontent.com/atakanprofile/Stoc/native/deploy.sh
     - chmod +x build.sh
     - ./build.sh
