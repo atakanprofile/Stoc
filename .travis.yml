@@ -8,7 +8,7 @@ before_install:
     - sudo apt-get update -qq
 
 install:
-    - sudo apt-get -y -qq install tree libgl1-mesa-dev qt59base qt59imageformats qt59svg qt59charts-no-lgpl qt59tools
+    - sudo apt-get -y -qq install libgl1-mesa-dev qt59base qt59imageformats qt59svg qt59charts-no-lgpl qt59tools
     - source /opt/qt*/bin/qt*-env.sh
     - wget -cO lqt "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
     - chmod +x lqt
@@ -19,7 +19,7 @@ script:
     - ./build.sh
     - unset QTDIR; unset QT_PLUGIN_PATH; unset LD_LIBRARY_PATH
     - ./lqt dist/stacer/stacer -bundle-non-qt-libs -no-translations
-    - tree /usr/lib
+    - locate libqsvg
     - ./lqt dist/stacer/stacer -appimage
 
 after_success:
