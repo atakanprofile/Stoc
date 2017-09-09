@@ -58,6 +58,8 @@ deploy:
   file:  
     - "/home/travis/build/atakanprofile/Stacer-x64.AppImage"
     - "/home/travis/build/atakanprofile/stacer_${VERSION}.deb"
+  draft: true
+  name: Stacer $TRAVIS_TAG
   on:
     repo: atakanprofile/Stoc
     branch: native
