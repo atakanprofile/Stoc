@@ -18,6 +18,7 @@ before_script:
 
 script:
 - ninja -j $(nproc)
+- lrelease ../stacer/stacer.pro
 
 #after_success:
 #- curl --upload-file ../Stacer*.AppImage https://transfer.sh/Stacer-x64.AppImage
@@ -43,7 +44,7 @@ before_deploy:
 - mv Stacer-x86_64.AppImage ../Stacer-x64.AppImage
 - curl --upload-file ../Stacer*.AppImage https://transfer.sh/Stacer-x64.AppImage
 # ruby dev
-- sudo apt-get install -y -qq ruby ruby-dev rpm
+- sudo apt-get install -y -qq ruby ruby-dev libffi-dev rpm
 - sudo gem install fpm
 # debian
 - mkdir -p build/usr/share/{stacer,applications}
@@ -55,7 +56,7 @@ before_deploy:
 # build debian pacage
 - dpkg -b build/output ../stacer_${VERSION}.deb
 # build rpm pacage
-- fpm -s deb -t rpm -p ../stacer_${VERSION}.rpm -n stacer ../stacer*.deb
+- fpm -s deb -t rpm -p ../stacer_${VERSION}.rpm -n stacer ../stacer_${VERSION}.deb
 
 deploy:
   provider: releases
