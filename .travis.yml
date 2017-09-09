@@ -42,7 +42,7 @@ before_deploy:
 - mv Stacer-x86_64.AppImage ../Stacer-x64.AppImage
 - tar -czf ../stacer-${VERSION}.tar.gz build/output
 - curl --upload-file ../stacer-${VERSION}.tar.gz https://transfer.sh/stacer-${VERSION}.tar.gz
-# debian
+#  debian
 - mkdir -p build/usr/share/{stacer,applications}
 - mv build/output/* build/usr/share/stacer
 - cp -r DEBIAN build/output/
