@@ -3,7 +3,7 @@
 
 #include "Managers/app_manager.h"
 
-App::~App()
+pp::~App()
 {
     delete ui;
 }
