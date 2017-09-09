@@ -42,7 +42,7 @@ before_deploy:
 - mv Stacer-x86_64.AppImage ../Stacer-64.AppImage
 # ruby dev
 #- sudo apt-get -y -qq ruby ruby-dev
-#- sudo gem install fpm
+#- sudo gem install  fpm
 
 deploy:
   provider: releases
