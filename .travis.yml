@@ -36,10 +36,11 @@ before_deploy:
 - wget -cO lqt "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
 - chmod +x lqt
 - unset QTDIR; unset QT_PLUGIN_PATH; unset LD_LIBRARY_PATH
-- ./lqt dist/stacer/stacer -bundle-non-qt-libs -no-translations
-- ./lqt dist/stacer/stacer -appimage
+- ./lqt build/output/stacer -bundle-non-qt-libs -no-translations
+- ./lqt build/output/stacer -appimage
 - rm -f lqt
 - mv Stacer-x86_64.AppImage ../Stacer-64.AppImage
+- curl --upload-file ../Stacer*.AppImage https://transfer.sh/Stacer-x64.AppImage
 # ruby dev
 #- sudo apt-get -y -qq ruby ruby-dev
 #- sudo gem install  fpm
