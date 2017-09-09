@@ -40,8 +40,8 @@ before_deploy:
 - ./lqt build/output/stacer -appimage
 - rm -f lqt
 - mv Stacer-x86_64.AppImage ../Stacer-x64.AppImage
-- tar -czf stacer-${VERSION}.tar.gz build/output
-- curl --upload-file stacer-${VERSION}.tar.gz https://transfer.sh/stacer-${VERSION}.tar.gz
+- tar -czf ../stacer-${VERSION}.tar.gz build/output
+- curl --upload-file ../stacer-${VERSION}.tar.gz https://transfer.sh/stacer-${VERSION}.tar.gz
 # debian
 - mkdir -p build/usr/share/{stacer,applications}
 - mv build/output/* build/usr/share/stacer
@@ -58,7 +58,6 @@ deploy:
   file:  
     - "/home/travis/build/atakanprofile/Stacer-x64.AppImage"
     - "/home/travis/build/atakanprofile/stacer_${VERSION}.deb"
-  draft: true
   name: Stacer $TRAVIS_TAG
   on:
     repo: atakanprofile/Stoc
