@@ -21,7 +21,7 @@ before_script:
 script:
 - ninja -j $(nproc)
 
-after_success:
+#after_success:
 #- curl --upload-file ../Stacer*.AppImage https://transfer.sh/Stacer-x64.AppImage
 
 before_deploy:
@@ -31,18 +31,21 @@ before_deploy:
 - lrelease stacer/stacer.pro
 - mkdir build/output/translations
 - mv translations/*.qm build/output/translations
-# ruby dev
-- sudo apt-get -y -qq ruby ruby-dev
-- sudo gem install fpm
+# desktop file and icon
+- cp stacer/static/logo.png build/output/stacer.png
+- cp stacer.desktop build/output/stacer.desktop
 # linuxdeployqt
 - wget -cO lqt "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
 - chmod +x lqt
-
 - unset QTDIR; unset QT_PLUGIN_PATH; unset LD_LIBRARY_PATH
 - ./lqt dist/stacer/stacer -bundle-non-qt-libs -no-translations
 - ./lqt dist/stacer/stacer -appimage
 - rm -f lqt
 - mv Stacer-x86_64.AppImage ../Stacer-64.AppImage
+# ruby dev
+#- sudo apt-get -y -qq ruby ruby-dev
+#- sudo gem install fpm
+
 deploy:
   provider: releases
   api_key:
@@ -52,4 +55,5 @@ deploy:
     repo: atakanprofile/Stoc
     branch: native
     tags: true
+
 
