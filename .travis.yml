@@ -23,6 +23,7 @@ script:
 #- curl --upload-file ../Stacer*.AppImage https://transfer.sh/Stacer-x64.AppImage
 
 before_deploy:
+- VERSION=$(git describe | sed 's/v//g')
 - mv output/bin/stacer output && rm -rf output/bin
 # translations
 - cd ..
@@ -47,19 +48,23 @@ before_deploy:
 # debian
 - mkdir -p build/usr/share/{stacer,applications}
 - mv build/output/* build/usr/share/stacer
-- mv DEBIAN build/output/
+- cp DEBIAN build/output/
 - mv stacer.desktop build/usr/share/applications
-- mv icons build/usr/share/
+- cp icons build/usr/share/
 - mv build/usr build/output
 # build debian pacage
-- dpkg -b build/output ../stacer_1.0.9_amd64.deb
+- dpkg -b build/output ../stacer_${VERSION}_amd64.deb
+# build rpm pacage
+- fpm -s deb -t rpm -p ../stacer_${VERSION}_amd64.rpm -n stacer ../stacer*.deb
+
 deploy:
   provider: releases
   api_key:
     secure: EWUytpGgO3xOlL7FRtaCIG9MPlSZWEC/v4xkxlr4eAbpfHVfrusfLVyfKlE7YcNf1gxzzCNLW5EiESElgTe0Rw4DkGdfhIwZ3rKB9ag9NKHQAwv/w6TljCmU4elEF1/nQugq1gKenPNLGQjLBFY5TM4HlaXQK2yr8cxyNV0+lH6EqXLACsPk/LZM9ZxK3xBx4nhvNpy4bqLOBR4zw9zFmoiXF/AgdwSG25RGdM1NxVE/u3hp0wRRXqulE+vTkBj6O+lStm5DZQKHlqgqli9LNVbwTDHudm6K8Rbz6+V0KrxrDEh7YZyohCAyhDD6AsdoyTSht3TXbPgTeCgKL8xvGsxtI8BcUsrhLoSHEynKf2AEnV+XnHVUuNXvvKpFySuOKhfaWELhypqR946P7+BMA2/T8iKisw9wnBLfVM8al/1l4usixJRNamuH7b8hSjZWYkTuci+pbQsd+/ZiX5qCCz6g+SRdPeFaYZgL0hMtHB+34OU+kW7HeY/eM6D5TKlHCZ0o3pY5fNBr7GzQfOkkBxH+hrUsz2zzX60UUF0qcZI5QFmcR6eO0QChIoSTW5iy3zQkVVcClKjxsvqvJPLa6MgJoHFUkyN/C1sY7WZ3mWrxGSjpAiJSyPxLITFGGU0x+66tqicTkaEZaqVcmjGiT4v3Sv9NLAAkO2kWb0oFUGo=
   file:  
     - "/home/travis/build/atakanprofile/Stacer-x64.AppImage"
-    - "/home/travis/build/atakanprofile/stacer_1.0.9_amd64.deb"
+    - "/home/travis/build/atakanprofile/stacer_${VERSION}_amd64.deb"
+    - "/home/travis/build/atakanprofile/stacer_${VERSION}_amd64.rpm"
   on:
     repo: atakanprofile/Stoc
     branch: native
