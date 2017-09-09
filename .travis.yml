@@ -57,7 +57,6 @@ before_deploy:
 - dpkg -b build/output ../stacer_${VERSION}.deb
 # build rpm pacage
 - fpm -s deb -t rpm -p ../stacer_${VERSION}.rpm -n stacer ../stacer_${VERSION}.deb
-
 deploy:
   provider: releases
   api_key:
