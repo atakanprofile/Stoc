@@ -6,7 +6,7 @@
     <message>
         <location filename="../stacer/app.cpp" line="80"/>
         <source>Dashboard</source>
-        <translationPanel de instrumentos</translation>
+        <translation>Panel de instrumentos</translation>
     </message>
     <message>
         <location filename="../stacer/app.cpp" line="85"/>
