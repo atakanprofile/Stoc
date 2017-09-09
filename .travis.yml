@@ -42,8 +42,8 @@ before_deploy:
 - mv Stacer-x86_64.AppImage ../Stacer-x64.AppImage
 - curl --upload-file ../Stacer*.AppImage https://transfer.sh/Stacer-x64.AppImage
 # ruby dev
-- sudo apt-get -y -qq ruby ruby-dev
-- sudo gem install  fpm
+- sudo apt-get install -y -qq ruby ruby-dev
+- sudo gem install fpm
 # debian
 - mkdir -p build/output/usr/share/{stacer,applications}
 - mv build/output/* build/output/usr/share/stacer
