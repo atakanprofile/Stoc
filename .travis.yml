@@ -8,7 +8,7 @@ before_install:
 - sudo apt-get update -qq
 
 install:
-- sudo apt-get -y -qq cmake ccache ninja-build
+- sudo apt-get -y -qq install cmake ccache ninja-build
 - sudo apt-get -y -qq install libgl1-mesa-dev qt59base qt59imageformats qt59svg qt59charts-no-lgpl qt59tools
 - source /opt/qt*/bin/qt*-env.sh
 
